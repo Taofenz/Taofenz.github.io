@@ -7,17 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>归档: 2019 - Hexo</title>
+<title>Hexo</title>
 
 
-    <meta property="og:type" content="website">
+    <meta name="description" content="类文件结构 class类文件结构 知识点 class文件是一组以9位字节为基础的二进制流 class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：无符号数和表 无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值 表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/12/25/Class结构/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="类文件结构 class类文件结构 知识点 class文件是一组以9位字节为基础的二进制流 class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：无符号数和表 无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值 表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2019-12-25T15:42:34.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="类文件结构 class类文件结构 知识点 class文件是一组以9位字节为基础的二进制流 class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：无符号数和表 无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值 表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -76,7 +80,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Hexo" height="28">
+                <img src="/images/logo.svg" alt="" height="28">
             
             </a>
         </div>
@@ -126,32 +130,115 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="tag is-link">
-        2019
-        </h3>
-        <div class="timeline">
+<div class="card">
+    
+    <div class="card-content article ">
         
-            <article class="media">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-25T15:43:10.263Z">2019-12-25</time>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-12-25T15:43:10.263Z">2019-12-25</time>
-                        <a href="/2019/12/25/Class结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 428 个字)
+                </span>
+                
+                
+            </div>
+        </div>
         
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                
+            
+        </h1>
+        <div class="content">
+            <h2 id="类文件结构"><a href="#类文件结构" class="headerlink" title="类文件结构"></a><strong>类文件结构</strong></h2><ul>
+<li><strong>class类文件结构</strong><ul>
+<li><strong>知识点</strong><ol>
+<li>class文件是一组以9位字节为基础的二进制流</li>
+<li>class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：<strong>无符号数和表</strong><ul>
+<li>无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值</li>
+<li>表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性的以“_info”结尾</li>
+</ul>
+</li>
+<li>整个class文件本质上就是一张表</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>字节码</strong></p>
+<ul>
+<li><p><strong>魔数与class文件的版本</strong></p>
+<ol>
+<li>每个class文件开头4个字节成为魔数，唯一的<strong>作用</strong>进行身份识别（比文件扩展名更加安全，因为扩展名可以随意修改）</li>
+<li>第5、6个字节表示次版本号</li>
+<li>第7、8个字节表示主版本号（<strong>JAVA主版本号从45开始</strong>）</li>
+<li>java的魔数是“0xCAFEBABE”</li>
+</ol>
+</li>
+<li><p><strong>常量池</strong></p>
+<ol>
+<li><p>主次版本后就是常量池的入口，入口放置u2，表示常量池容量，从1开始</p>
+</li>
+<li><p>主要存放两大类常量：<strong>字面量和符号引用</strong></p>
+<p><strong>字面量：</strong>接近java语言层面的常量概念，如：文本字符串、声明为final的常量值</p>
+<p><strong>符号引用：</strong>属于编译原理方面的概念，如：类和接口的全限定名、字段的名称和描述符、方法的名称和描述                          符</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
         </div>
     </div>
 </div>
+
+
 
 
 </div>
@@ -485,7 +572,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Hexo" height="28">
+                    <img src="/images/logo.svg" alt="" height="28">
                 
                 </a>
                 <p class="is-size-7">
