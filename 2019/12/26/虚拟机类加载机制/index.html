@@ -10,19 +10,19 @@
 <title>虚拟机加载机制 - Code Wang的博客</title>
 
 
-    <meta name="description" content="虚拟机加载机制 概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化  使用java">
+    <meta name="description" content="概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化  使用java.lang.r">
 <meta name="keywords" content="java,虚拟机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟机加载机制">
 <meta property="og:url" content="http://yoursite.com/2019/12/26/虚拟机类加载机制/index.html">
 <meta property="og:site_name" content="Code Wang的博客">
-<meta property="og:description" content="虚拟机加载机制 概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化  使用java">
+<meta property="og:description" content="概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化  使用java.lang.r">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-26T14:53:41.450Z">
+<meta property="og:updated_time" content="2019-12-26T16:11:28.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟机加载机制">
-<meta name="twitter:description" content="虚拟机加载机制 概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化  使用java">
+<meta name="twitter:description" content="概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化  使用java.lang.r">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 853 个字)
+                    6 分钟 读完 (大约 846 个字)
                 </span>
                 
                 
@@ -164,7 +164,7 @@
             
         </h1>
         <div class="content">
-            <h2 id="虚拟机加载机制"><a href="#虚拟机加载机制" class="headerlink" title="虚拟机加载机制"></a><strong>虚拟机加载机制</strong></h2><ul>
+            <ul>
 <li><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a><strong>概述</strong></h3><ol>
 <li>类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性</li>
 </ol>
@@ -299,7 +299,7 @@
         
         <div class="level-end">
             <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/25/类文件结构/">
-                <span class="level-item"></span>
+                <span class="level-item">类文件结构</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -438,22 +438,18 @@
                     目录
                 </h3>
                 <ul class="menu-list"><li>
-        <a class="is-flex" href="#虚拟机加载机制">
-        <span class="has-mr-6">1</span>
-        <span>虚拟机加载机制</span>
-        </a><ul class="menu-list"><li>
         <a class="is-flex" href="#概述">
-        <span class="has-mr-6">1.1</span>
+        <span class="has-mr-6">1</span>
         <span>概述</span>
         </a></li><li>
         <a class="is-flex" href="#加载类的时机">
-        <span class="has-mr-6">1.2</span>
+        <span class="has-mr-6">2</span>
         <span>加载类的时机</span>
         </a></li><li>
         <a class="is-flex" href="#类加载的过程">
-        <span class="has-mr-6">1.3</span>
+        <span class="has-mr-6">3</span>
         <span>类加载的过程</span>
-        </a></li></ul></li></ul>
+        </a></li></ul>
             </div>
         </div>
     </div>
@@ -593,14 +589,14 @@
             
             <a href="/2019/12/25/类文件结构/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="类文件结构">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-25T15:43:10.263Z">2019-12-25</time></div>
-                    <a href="/2019/12/25/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <a href="/2019/12/25/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类文件结构</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
                     </p>
@@ -721,14 +717,14 @@
             
             <a href="/2019/12/25/类文件结构/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="类文件结构">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-25T15:43:10.263Z">2019-12-25</time></div>
-                    <a href="/2019/12/25/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <a href="/2019/12/25/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类文件结构</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
                     </p>

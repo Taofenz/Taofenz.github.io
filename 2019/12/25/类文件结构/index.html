@@ -7,22 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Code Wang的博客</title>
+<title>类文件结构 - Code Wang的博客</title>
 
 
-    <meta name="description" content="类文件结构 class类文件结构 知识点 class文件是一组以8位字节为基础的二进制流 class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：无符号数和表 无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值 表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都">
+    <meta name="description" content="class类文件结构 知识点 class文件是一组以8位字节为基础的二进制流 class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：无符号数和表 无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值 表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性的以">
 <meta name="keywords" content="java,虚拟机">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Code Wang的博客">
+<meta property="og:title" content="类文件结构">
 <meta property="og:url" content="http://yoursite.com/2019/12/25/类文件结构/index.html">
 <meta property="og:site_name" content="Code Wang的博客">
-<meta property="og:description" content="类文件结构 class类文件结构 知识点 class文件是一组以8位字节为基础的二进制流 class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：无符号数和表 无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值 表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都">
+<meta property="og:description" content="class类文件结构 知识点 class文件是一组以8位字节为基础的二进制流 class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：无符号数和表 无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值 表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性的以">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-26T14:57:55.474Z">
+<meta property="og:updated_time" content="2019-12-26T16:11:24.086Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Code Wang的博客">
-<meta name="twitter:description" content="类文件结构 class类文件结构 知识点 class文件是一组以8位字节为基础的二进制流 class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：无符号数和表 无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值 表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都">
+<meta name="twitter:title" content="类文件结构">
+<meta name="twitter:description" content="class类文件结构 知识点 class文件是一组以8位字节为基础的二进制流 class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：无符号数和表 无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值 表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性的以">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -81,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="" height="28">
+                <img src="/images/logo.svg" alt="类文件结构" height="28">
             
             </a>
         </div>
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1324 个字)
+                    9 分钟 读完 (大约 1319 个字)
                 </span>
                 
                 
@@ -160,11 +160,11 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                
+                类文件结构
             
         </h1>
         <div class="content">
-            <h2 id="类文件结构"><a href="#类文件结构" class="headerlink" title="类文件结构"></a><strong>类文件结构</strong></h2><ul>
+            <ul>
 <li><h3 id="class类文件结构"><a href="#class类文件结构" class="headerlink" title="class类文件结构"></a><strong>class类文件结构</strong></h3><ul>
 <li><strong>知识点</strong><ol>
 <li>class文件是一组以8位字节为基础的二进制流</li>
@@ -515,14 +515,10 @@
                     目录
                 </h3>
                 <ul class="menu-list"><li>
-        <a class="is-flex" href="#类文件结构">
-        <span class="has-mr-6">1</span>
-        <span>类文件结构</span>
-        </a><ul class="menu-list"><li>
         <a class="is-flex" href="#class类文件结构">
-        <span class="has-mr-6">1.1</span>
+        <span class="has-mr-6">1</span>
         <span>class类文件结构</span>
-        </a></li></ul></li></ul>
+        </a></li></ul>
             </div>
         </div>
     </div>
@@ -662,14 +658,14 @@
             
             <a href="/2019/12/25/类文件结构/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="类文件结构">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-25T15:43:10.263Z">2019-12-25</time></div>
-                    <a href="/2019/12/25/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <a href="/2019/12/25/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类文件结构</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
                     </p>
@@ -790,14 +786,14 @@
             
             <a href="/2019/12/25/类文件结构/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="类文件结构">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-25T15:43:10.263Z">2019-12-25</time></div>
-                    <a href="/2019/12/25/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <a href="/2019/12/25/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类文件结构</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
                     </p>
@@ -871,7 +867,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="" height="28">
+                    <img src="/images/logo.svg" alt="类文件结构" height="28">
                 
                 </a>
                 <p class="is-size-7">
