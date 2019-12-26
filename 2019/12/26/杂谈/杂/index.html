@@ -7,22 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>虚拟机加载机制 - Code Wang的博客</title>
+<title>杂 - Code Wang的博客</title>
 
 
-    <meta name="description" content="概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化  使用java.lang.r">
-<meta name="keywords" content="java,虚拟机">
+    <meta name="description" content="代码书写优化 尽量不要在finally中书写return语句">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="虚拟机加载机制">
-<meta property="og:url" content="http://yoursite.com/2019/12/26/虚拟机类加载机制/index.html">
+<meta property="og:title" content="杂">
+<meta property="og:url" content="http://yoursite.com/2019/12/26/杂谈/杂/index.html">
 <meta property="og:site_name" content="Code Wang的博客">
-<meta property="og:description" content="概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化  使用java.lang.r">
+<meta property="og:description" content="代码书写优化 尽量不要在finally中书写return语句">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-26T16:11:28.908Z">
+<meta property="og:updated_time" content="2019-12-26T16:13:31.120Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="虚拟机加载机制">
-<meta name="twitter:description" content="概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化  使用java.lang.r">
+<meta name="twitter:title" content="杂">
+<meta name="twitter:description" content="代码书写优化 尽量不要在finally中书写return语句">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -81,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="虚拟机加载机制" height="28">
+                <img src="/images/logo.svg" alt="杂" height="28">
             
             </a>
         </div>
@@ -90,19 +90,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">文章</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
-                
-                <a class="navbar-item"
-                href="/about">About</a>
+                href="/tags">标签</a>
                 
             </div>
             
@@ -141,17 +138,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-26T09:17:39.059Z">2019-12-26</time>
+                <time class="level-item has-text-grey" datetime="2019-12-26T13:59:52.618Z">2019-12-26</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/java/">java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                <a class="has-link-grey -link" href="/categories/java/">java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/java/杂谈/">杂谈</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 846 个字)
+                    几秒 读完 (大约 18 个字)
                 </span>
                 
                 
@@ -160,77 +157,13 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                虚拟机加载机制
+                杂
             
         </h1>
         <div class="content">
-            <ul>
-<li><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a><strong>概述</strong></h3><ol>
-<li>类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性</li>
-</ol>
-</li>
-<li><h3 id="加载类的时机"><a href="#加载类的时机" class="headerlink" title="加载类的时机"></a><strong>加载类的时机</strong></h3><ol>
-<li><p>有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：</p>
-<ul>
-<li><p>遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化</p>
-</li>
-<li><p>使用java.lang.reflect包的方法对类进行反射调用时，如果类没有进行过初始化则立即初始化</p>
-</li>
-<li><p>当初始化一个类的时候其父类还没有进行初始化则对其父类先进行初始化（类对此有要求而接口没有，接口在用到其父类时再进行初始化）</p>
-</li>
-<li><p>虚拟机启动时，用户指定要执行的类（包含main方法的类），则对其进行初始化</p>
-</li>
-<li><p>jdk1.7的动态语言支持，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个方法句柄对应的类没有进行初始化，则需要先初始化</p>
-</li>
+            <h3 id="代码书写优化"><a href="#代码书写优化" class="headerlink" title="代码书写优化"></a><strong>代码书写优化</strong></h3><ul>
+<li>尽量不要在finally中书写return语句</li>
 </ul>
-</li>
-</ol>
-</li>
-</ul>
-  <a id="more"></a>
-
-<ol start="2">
-<li>除此之外，所有引用类的方式都不会触发初始化，这种引用方式称为被动引用，例如：<ul>
-<li>引用静态字段的时候只有定义静态字段的类会初始化，其子类在引用的时候子类不会初始化，只会初始化定义静态字段的父类</li>
-<li>SuperClass[] sca=new SuperClass[]; 不会触发SuperClass的初始化（创建动作是newarray，不是new）</li>
-<li>在一个类种有final修饰的静态属性，当对此属性引用时不会触发该类的初始化，因为在编译期间将此静态属性的值存储到了Notinitialization类的常量池中，此时引用的是Notinitialization的值，与定义此静态属性的类已经没有任何联系了</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><h3 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a><strong>类加载的过程</strong></h3><ul>
-<li><strong>加载</strong><ol>
-<li>加载只是类加载的一个阶段</li>
-<li>加载阶段，虚拟机需要完成三件事情：获取二进制字节流–&gt;根据二进制字节流构造数据结构–&gt;方法区中生成一个java.lang.Class对象<ul>
-<li>通过一个类的全限定名获取定义此类的二进制字节流</li>
-<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构</li>
-<li>在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据访问入口</li>
-</ul>
-</li>
-<li>加载阶段和验证的部分阶段是交叉进行的</li>
-</ol>
-</li>
-<li><strong>验证</strong><ol>
-<li>文件格式验证：魔数、主次版本校验</li>
-<li>元数据验证</li>
-<li>字节码验证</li>
-<li>符号引用验证</li>
-</ol>
-</li>
-<li><strong>准备</strong><ol>
-<li>此阶段为类变量（static）分配内存（在方法区中）并赋初始值，真正赋值则是在<cinit>()方法中</li>
-<li>final修饰的static变量则在准备阶段就进行了真正赋值</li>
-</ol>
-</li>
-<li><strong>解析</strong><ol>
-<li>将常量池中符号引用替换为直接引用的过程</li>
-<li></li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<p>​    </p>
 
         </div>
         
@@ -238,7 +171,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/java/">java</a>, <a class="has-link-grey -link" href="/tags/虚拟机/">虚拟机</a>
+                    <a class="has-link-grey -link" href="/tags/java/">java</a>
                 </div>
             </div>
         </div>
@@ -290,19 +223,12 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/26/杂/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/27/java虚拟机/类文件结构/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">杂</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/25/类文件结构/">
                 <span class="level-item">类文件结构</span>
-                <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
+        
         
     </div>
 </div>
@@ -387,45 +313,6 @@
         
         
         
-        <div class="level is-mobile">
-            
-            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
-                title="Github" href="https://github.com/ppoffice">
-                
-                <i class="fab fa-github"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
-                title="Facebook" href="https://facebook.com">
-                
-                <i class="fab fa-facebook"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
-                title="Twitter" href="https://twitter.com">
-                
-                <i class="fab fa-twitter"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
-                title="Dribbble" href="https://dribbble.com">
-                
-                <i class="fab fa-dribbble"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
-                title="RSS" href="/">
-                
-                <i class="fas fa-rss"></i>
-                
-            </a>
-            
-        </div>
-        
     </div>
 </div>
     
@@ -438,17 +325,9 @@
                     目录
                 </h3>
                 <ul class="menu-list"><li>
-        <a class="is-flex" href="#概述">
+        <a class="is-flex" href="#代码书写优化">
         <span class="has-mr-6">1</span>
-        <span>概述</span>
-        </a></li><li>
-        <a class="is-flex" href="#加载类的时机">
-        <span class="has-mr-6">2</span>
-        <span>加载类的时机</span>
-        </a></li><li>
-        <a class="is-flex" href="#类加载的过程">
-        <span class="has-mr-6">3</span>
-        <span>类加载的过程</span>
+        <span>代码书写优化</span>
         </a></li></ul>
             </div>
         </div>
@@ -549,7 +428,45 @@
         
         <article class="media">
             
-            <a href="/2019/12/26/杂/" class="media-left">
+            <a href="/2019/12/27/java虚拟机/虚拟机类加载机制/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="虚拟机加载机制">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T16:20:30.734Z">2019-12-27</time></div>
+                    <a href="/2019/12/27/java虚拟机/虚拟机类加载机制/" class="title has-link-black-ter is-size-6 has-text-weight-normal">虚拟机加载机制</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/27/java虚拟机/类文件结构/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="类文件结构">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T16:20:30.732Z">2019-12-27</time></div>
+                    <a href="/2019/12/27/java虚拟机/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类文件结构</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/26/杂谈/杂/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="杂">
                 </p>
@@ -558,47 +475,9 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T13:59:52.618Z">2019-12-26</time></div>
-                    <a href="/2019/12/26/杂/" class="title has-link-black-ter is-size-6 has-text-weight-normal">杂</a>
+                    <a href="/2019/12/26/杂谈/杂/" class="title has-link-black-ter is-size-6 has-text-weight-normal">杂</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/杂谈/">杂谈</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/26/虚拟机类加载机制/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="虚拟机加载机制">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T09:17:39.059Z">2019-12-26</time></div>
-                    <a href="/2019/12/26/虚拟机类加载机制/" class="title has-link-black-ter is-size-6 has-text-weight-normal">虚拟机加载机制</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/25/类文件结构/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="类文件结构">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-25T15:43:10.263Z">2019-12-25</time></div>
-                    <a href="/2019/12/25/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类文件结构</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
                     </p>
                 </div>
             </div>
@@ -677,7 +556,45 @@
         
         <article class="media">
             
-            <a href="/2019/12/26/杂/" class="media-left">
+            <a href="/2019/12/27/java虚拟机/虚拟机类加载机制/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="虚拟机加载机制">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T16:20:30.734Z">2019-12-27</time></div>
+                    <a href="/2019/12/27/java虚拟机/虚拟机类加载机制/" class="title has-link-black-ter is-size-6 has-text-weight-normal">虚拟机加载机制</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/27/java虚拟机/类文件结构/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="类文件结构">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T16:20:30.732Z">2019-12-27</time></div>
+                    <a href="/2019/12/27/java虚拟机/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类文件结构</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/26/杂谈/杂/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="杂">
                 </p>
@@ -686,47 +603,9 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T13:59:52.618Z">2019-12-26</time></div>
-                    <a href="/2019/12/26/杂/" class="title has-link-black-ter is-size-6 has-text-weight-normal">杂</a>
+                    <a href="/2019/12/26/杂谈/杂/" class="title has-link-black-ter is-size-6 has-text-weight-normal">杂</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/杂谈/">杂谈</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/26/虚拟机类加载机制/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="虚拟机加载机制">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T09:17:39.059Z">2019-12-26</time></div>
-                    <a href="/2019/12/26/虚拟机类加载机制/" class="title has-link-black-ter is-size-6 has-text-weight-normal">虚拟机加载机制</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/25/类文件结构/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="类文件结构">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-25T15:43:10.263Z">2019-12-25</time></div>
-                    <a href="/2019/12/25/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类文件结构</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
                     </p>
                 </div>
             </div>
@@ -798,7 +677,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="虚拟机加载机制" height="28">
+                    <img src="/images/logo.svg" alt="杂" height="28">
                 
                 </a>
                 <p class="is-size-7">
