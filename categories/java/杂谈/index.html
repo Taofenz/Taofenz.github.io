@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: 虚拟机 - Code Wang的博客</title>
+<title>分类: 杂谈 - Code Wang的博客</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="Code Wang的博客">
-<meta property="og:url" content="http://yoursite.com/tags/虚拟机/index.html">
+<meta property="og:url" content="http://yoursite.com/categories/java/杂谈/index.html">
 <meta property="og:site_name" content="Code Wang的博客">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
@@ -129,8 +129,11 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">虚拟机</a></li>
+            <li><a href="/categories">分类</a></li>
+            
+            <li><a href="/categories/java/">java</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">杂谈</a></li>
         </ul>
         </nav>
     </div>
@@ -143,17 +146,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-26T09:17:39.059Z">2019-12-26</time>
+                <time class="level-item has-text-grey" datetime="2019-12-26T13:59:52.618Z">2019-12-26</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/java/">java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                <a class="has-link-grey -link" href="/categories/java/">java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/java/杂谈/">杂谈</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 853 个字)
+                    几秒 读完 (大约 18 个字)
                 </span>
                 
                 
@@ -162,110 +165,16 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/12/26/虚拟机类加载机制/">虚拟机加载机制</a>
+                <a class="has-link-black-ter" href="/2019/12/26/杂/">虚拟机加载机制</a>
             
         </h1>
         <div class="content">
-            <h2 id="虚拟机加载机制"><a href="#虚拟机加载机制" class="headerlink" title="虚拟机加载机制"></a><strong>虚拟机加载机制</strong></h2><ul>
-<li><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a><strong>概述</strong></h3><ol>
-<li>类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性</li>
-</ol>
-</li>
-<li><h3 id="加载类的时机"><a href="#加载类的时机" class="headerlink" title="加载类的时机"></a><strong>加载类的时机</strong></h3><ol>
-<li><p>有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：</p>
-<ul>
-<li><p>遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化</p>
-</li>
-<li><p>使用java.lang.reflect包的方法对类进行反射调用时，如果类没有进行过初始化则立即初始化</p>
-</li>
-<li><p>当初始化一个类的时候其父类还没有进行初始化则对其父类先进行初始化（类对此有要求而接口没有，接口在用到其父类时再进行初始化）</p>
-</li>
-<li><p>虚拟机启动时，用户指定要执行的类（包含main方法的类），则对其进行初始化</p>
-</li>
-<li><p>jdk1.7的动态语言支持，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个方法句柄对应的类没有进行初始化，则需要先初始化</p>
-</li>
+            <h3 id="代码书写优化"><a href="#代码书写优化" class="headerlink" title="代码书写优化"></a><strong>代码书写优化</strong></h3><ul>
+<li>尽量不要在finally中书写return语句</li>
 </ul>
-</li>
-</ol>
-</li>
-</ul>
+
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/12/26/虚拟机类加载机制/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-25T15:43:10.263Z">2019-12-25</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/java/">java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    9 分钟 读完 (大约 1324 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/25/类文件结构/"></a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="类文件结构"><a href="#类文件结构" class="headerlink" title="类文件结构"></a><strong>类文件结构</strong></h2><ul>
-<li><h3 id="class类文件结构"><a href="#class类文件结构" class="headerlink" title="class类文件结构"></a><strong>class类文件结构</strong></h3><ul>
-<li><strong>知识点</strong><ol>
-<li>class文件是一组以8位字节为基础的二进制流</li>
-<li>class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：<strong>无符号数和表</strong><ul>
-<li>无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值</li>
-<li>表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性的以“_info”结尾</li>
-</ul>
-</li>
-<li>整个class文件本质上就是一张表</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/12/25/类文件结构/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>

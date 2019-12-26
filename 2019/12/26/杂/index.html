@@ -7,17 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: 虚拟机 - Code Wang的博客</title>
+<title>虚拟机加载机制 - Code Wang的博客</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Code Wang的博客">
-<meta property="og:url" content="http://yoursite.com/tags/虚拟机/index.html">
+    <meta name="description" content="代码书写优化 尽量不要在finally中书写return语句">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟机加载机制">
+<meta property="og:url" content="http://yoursite.com/2019/12/26/杂/index.html">
 <meta property="og:site_name" content="Code Wang的博客">
+<meta property="og:description" content="代码书写优化 尽量不要在finally中书写return语句">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2019-12-26T14:01:35.122Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Code Wang的博客">
+<meta name="twitter:title" content="虚拟机加载机制">
+<meta name="twitter:description" content="代码书写优化 尽量不要在finally中书写return语句">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -76,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Code Wang的博客" height="28">
+                <img src="/images/logo.svg" alt="虚拟机加载机制" height="28">
             
             </a>
         </div>
@@ -112,6 +117,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -125,157 +134,107 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-26T13:59:52.618Z">2019-12-26</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/java/">java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/java/杂谈/">杂谈</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    几秒 读完 (大约 18 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                虚拟机加载机制
+            
+        </h1>
+        <div class="content">
+            <h3 id="代码书写优化"><a href="#代码书写优化" class="headerlink" title="代码书写优化"></a><strong>代码书写优化</strong></h3><ul>
+<li>尽量不要在finally中书写return语句</li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/java/">java</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">虚拟机</a></li>
-        </ul>
-        </nav>
-    </div>
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
 </div>
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-26T09:17:39.059Z">2019-12-26</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/java/">java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
-                </div>
                 
                 
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 853 个字)
-                </span>
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
                 
                 
-            </div>
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/26/虚拟机类加载机制/">虚拟机加载机制</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="虚拟机加载机制"><a href="#虚拟机加载机制" class="headerlink" title="虚拟机加载机制"></a><strong>虚拟机加载机制</strong></h2><ul>
-<li><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a><strong>概述</strong></h3><ol>
-<li>类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性</li>
-</ol>
-</li>
-<li><h3 id="加载类的时机"><a href="#加载类的时机" class="headerlink" title="加载类的时机"></a><strong>加载类的时机</strong></h3><ol>
-<li><p>有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：</p>
-<ul>
-<li><p>遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化</p>
-</li>
-<li><p>使用java.lang.reflect包的方法对类进行反射调用时，如果类没有进行过初始化则立即初始化</p>
-</li>
-<li><p>当初始化一个类的时候其父类还没有进行初始化则对其父类先进行初始化（类对此有要求而接口没有，接口在用到其父类时再进行初始化）</p>
-</li>
-<li><p>虚拟机启动时，用户指定要执行的类（包含main方法的类），则对其进行初始化</p>
-</li>
-<li><p>jdk1.7的动态语言支持，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个方法句柄对应的类没有进行初始化，则需要先初始化</p>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/12/26/虚拟机类加载机制/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
 </div>
 
 
 
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-25T15:43:10.263Z">2019-12-25</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/java/">java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    9 分钟 读完 (大约 1324 个字)
-                </span>
-                
-                
-            </div>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/26/虚拟机类加载机制/">
+                <span class="level-item">虚拟机加载机制</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/25/类文件结构/"></a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="类文件结构"><a href="#类文件结构" class="headerlink" title="类文件结构"></a><strong>类文件结构</strong></h2><ul>
-<li><h3 id="class类文件结构"><a href="#class类文件结构" class="headerlink" title="class类文件结构"></a><strong>class类文件结构</strong></h3><ul>
-<li><strong>知识点</strong><ol>
-<li>class文件是一组以8位字节为基础的二进制流</li>
-<li>class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：<strong>无符号数和表</strong><ul>
-<li>无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值</li>
-<li>表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性的以“_info”结尾</li>
-</ul>
-</li>
-<li>整个class文件本质上就是一张表</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/12/25/类文件结构/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
         
     </div>
 </div>
-
-
-
-
-
-
 
 
 </div>
@@ -400,6 +359,22 @@
 </div>
     
         
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#代码书写优化">
+        <span class="has-mr-6">1</span>
+        <span>代码书写优化</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
     
         <div class="card widget">
     <div class="card-content">
@@ -744,7 +719,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Code Wang的博客" height="28">
+                    <img src="/images/logo.svg" alt="虚拟机加载机制" height="28">
                 
                 </a>
                 <p class="is-size-7">
