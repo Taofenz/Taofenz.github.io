@@ -153,7 +153,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 846 个字)
+                    7 分钟 读完 (大约 1027 个字)
                 </span>
                 
                 
@@ -174,13 +174,13 @@
 <li><h3 id="加载类的时机"><a href="#加载类的时机" class="headerlink" title="加载类的时机"></a><strong>加载类的时机</strong></h3><ol>
 <li><p>有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：</p>
 <ul>
-<li><p>遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化</p>
+<li><p>遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化–<em>首次访问类的静态变量或者静态方法时、new</em></p>
 </li>
-<li><p>使用java.lang.reflect包的方法对类进行反射调用时，如果类没有进行过初始化则立即初始化</p>
+<li><p>使用java.lang.reflect包的方法对类进行反射调用时，如果类没有进行过初始化则立即初始化–<em>Class.forName</em></p>
 </li>
-<li><p>当初始化一个类的时候其父类还没有进行初始化则对其父类先进行初始化（类对此有要求而接口没有，接口在用到其父类时再进行初始化）</p>
+<li><p>当初始化一个类的时候其父类还没有进行初始化则对其父类先进行初始化（类对此有要求而接口没有，接口在用到其父类时再进行初始化）–<em>子类初始化会连动父类初始化</em></p>
 </li>
-<li><p>虚拟机启动时，用户指定要执行的类（包含main方法的类），则对其进行初始化</p>
+<li><p>main方法所在的类首先进行初始化</p>
 </li>
 <li><p>jdk1.7的动态语言支持，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个方法句柄对应的类没有进行初始化，则需要先初始化</p>
 </li>
@@ -319,7 +319,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            3
+                            8
                         </p>
                     </a>
                 </div>
@@ -331,7 +331,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            3
+                            7
                         </p>
                     </a>
                 </div>
@@ -343,7 +343,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            2
+                            5
                         </p>
                     </a>
                 </div>
@@ -430,6 +430,38 @@
             <span class="level-end">
                 <span class="level-item tag">2</span>
             </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/算法/">
+            <span class="level-start">
+                <span class="level-item">算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/算法/数组/">
+            <span class="level-start">
+                <span class="level-item">数组</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/设计模式/">
+            <span class="level-start">
+                <span class="level-item">设计模式</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/设计模式/单例模式/">
+            <span class="level-start">
+                <span class="level-item">单例模式</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
         </a></li></ul></li>
             </ul>
         </div>
@@ -441,7 +473,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/虚拟机/" style="font-size: 10px;">虚拟机</a>
+        <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/数组/" style="font-size: 20px;">数组</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/虚拟机/" style="font-size: 13.33px;">虚拟机</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
     </div>
 </div>
     
@@ -456,18 +488,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/27/java虚拟机/虚拟机类加载机制/" class="media-left">
+            <a href="/2020/01/05/算法/数组/x 的平方根/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="虚拟机加载机制">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="x的平方根">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T16:20:30.734Z">2019-12-27</time></div>
-                    <a href="/2019/12/27/java虚拟机/虚拟机类加载机制/" class="title has-link-black-ter is-size-6 has-text-weight-normal">虚拟机加载机制</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T16:30:52.384Z">2020-01-05</time></div>
+                    <a href="/2020/01/05/算法/数组/x 的平方根/" class="title has-link-black-ter is-size-6 has-text-weight-normal">x的平方根</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
                     </p>
                 </div>
             </div>
@@ -475,18 +507,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/27/java虚拟机/类文件结构/" class="media-left">
+            <a href="/2020/01/04/算法/数组/二进制求和/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="类文件结构">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="二进制求和">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T16:20:30.732Z">2019-12-27</time></div>
-                    <a href="/2019/12/27/java虚拟机/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类文件结构</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T15:53:54.963Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/算法/数组/二进制求和/" class="title has-link-black-ter is-size-6 has-text-weight-normal">二进制求和</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
                     </p>
                 </div>
             </div>
@@ -494,18 +526,56 @@
         
         <article class="media">
             
-            <a href="/2019/12/26/杂谈/杂/" class="media-left">
+            <a href="/2020/01/04/算法/数组/最后一个单词的长度/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="杂">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="最后一个单词的长度">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T13:59:52.618Z">2019-12-26</time></div>
-                    <a href="/2019/12/26/杂谈/杂/" class="title has-link-black-ter is-size-6 has-text-weight-normal">杂</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T14:21:36.880Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/算法/数组/最后一个单词的长度/" class="title has-link-black-ter is-size-6 has-text-weight-normal">最后一个单词的长度</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/杂谈/">杂谈</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/04/算法/数组/合并两个有序数组/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="合并两个有序数组">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T13:04:50.635Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/算法/数组/合并两个有序数组/" class="title has-link-black-ter is-size-6 has-text-weight-normal">合并两个有序数组</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/30/设计模式/单例模式/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="单例模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-30T07:36:42.600Z">2019-12-30</time></div>
+                    <a href="/2019/12/30/设计模式/单例模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单例模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a> / <a class="has-link-grey -link" href="/categories/设计模式/单例模式/">单例模式</a>
                     </p>
                 </div>
             </div>
@@ -523,12 +593,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/12/">
                 <span class="level-start">
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -554,9 +635,30 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/数组/">
+                        <span class="tag">数组</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/虚拟机/">
                         <span class="tag">虚拟机</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/设计模式/">
+                        <span class="tag">设计模式</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -584,18 +686,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/27/java虚拟机/虚拟机类加载机制/" class="media-left">
+            <a href="/2020/01/05/算法/数组/x 的平方根/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="虚拟机加载机制">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="x的平方根">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T16:20:30.734Z">2019-12-27</time></div>
-                    <a href="/2019/12/27/java虚拟机/虚拟机类加载机制/" class="title has-link-black-ter is-size-6 has-text-weight-normal">虚拟机加载机制</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T16:30:52.384Z">2020-01-05</time></div>
+                    <a href="/2020/01/05/算法/数组/x 的平方根/" class="title has-link-black-ter is-size-6 has-text-weight-normal">x的平方根</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
                     </p>
                 </div>
             </div>
@@ -603,18 +705,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/27/java虚拟机/类文件结构/" class="media-left">
+            <a href="/2020/01/04/算法/数组/二进制求和/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="类文件结构">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="二进制求和">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T16:20:30.732Z">2019-12-27</time></div>
-                    <a href="/2019/12/27/java虚拟机/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类文件结构</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T15:53:54.963Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/算法/数组/二进制求和/" class="title has-link-black-ter is-size-6 has-text-weight-normal">二进制求和</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
                     </p>
                 </div>
             </div>
@@ -622,18 +724,56 @@
         
         <article class="media">
             
-            <a href="/2019/12/26/杂谈/杂/" class="media-left">
+            <a href="/2020/01/04/算法/数组/最后一个单词的长度/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="杂">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="最后一个单词的长度">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T13:59:52.618Z">2019-12-26</time></div>
-                    <a href="/2019/12/26/杂谈/杂/" class="title has-link-black-ter is-size-6 has-text-weight-normal">杂</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T14:21:36.880Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/算法/数组/最后一个单词的长度/" class="title has-link-black-ter is-size-6 has-text-weight-normal">最后一个单词的长度</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/杂谈/">杂谈</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/04/算法/数组/合并两个有序数组/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="合并两个有序数组">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T13:04:50.635Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/算法/数组/合并两个有序数组/" class="title has-link-black-ter is-size-6 has-text-weight-normal">合并两个有序数组</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/30/设计模式/单例模式/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="单例模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-30T07:36:42.600Z">2019-12-30</time></div>
+                    <a href="/2019/12/30/设计模式/单例模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单例模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a> / <a class="has-link-grey -link" href="/categories/设计模式/单例模式/">单例模式</a>
                     </p>
                 </div>
             </div>
@@ -651,12 +791,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/12/">
                 <span class="level-start">
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -682,9 +833,30 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/数组/">
+                        <span class="tag">数组</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/虚拟机/">
                         <span class="tag">虚拟机</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/设计模式/">
+                        <span class="tag">设计模式</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -709,7 +881,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 Wang Tao&nbsp;
+                &copy; 2020 Wang Tao&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
                 

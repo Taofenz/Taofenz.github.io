@@ -10,19 +10,19 @@
 <title>虚拟机加载机制 - Code Wang的博客</title>
 
 
-    <meta name="description" content="概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化  使用java.lang.r">
+    <meta name="description" content="概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化–首次访问类的静态变量或者静态">
 <meta name="keywords" content="java,虚拟机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟机加载机制">
 <meta property="og:url" content="http://yoursite.com/2019/12/27/java虚拟机/虚拟机类加载机制/index.html">
 <meta property="og:site_name" content="Code Wang的博客">
-<meta property="og:description" content="概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化  使用java.lang.r">
+<meta property="og:description" content="概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化–首次访问类的静态变量或者静态">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-26T16:11:28.908Z">
+<meta property="og:updated_time" content="2020-01-04T13:02:12.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟机加载机制">
-<meta name="twitter:description" content="概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化  使用java.lang.r">
+<meta name="twitter:description" content="概述 类型的加载、连接和初始化都是在程序运行期间完成的（动态加载、动态连接），虽然会增加性能的开销，但是会提高java语言的动态扩展性   加载类的时机 有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：  遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化–首次访问类的静态变量或者静态">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -148,7 +148,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 846 个字)
+                    7 分钟 读完 (大约 1027 个字)
                 </span>
                 
                 
@@ -169,13 +169,13 @@
 <li><h3 id="加载类的时机"><a href="#加载类的时机" class="headerlink" title="加载类的时机"></a><strong>加载类的时机</strong></h3><ol>
 <li><p>有且只有以下5种情况类立即开始初始化（加载、验证、准备已完成），称为主动引用：</p>
 <ul>
-<li><p>遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化</p>
+<li><p>遇到new、getstatic、putstatic、或invokestatic这4条字节指令码时，如果类没有进行初始化则触发其初始化–<em>首次访问类的静态变量或者静态方法时、new</em></p>
 </li>
-<li><p>使用java.lang.reflect包的方法对类进行反射调用时，如果类没有进行过初始化则立即初始化</p>
+<li><p>使用java.lang.reflect包的方法对类进行反射调用时，如果类没有进行过初始化则立即初始化–<em>Class.forName</em></p>
 </li>
-<li><p>当初始化一个类的时候其父类还没有进行初始化则对其父类先进行初始化（类对此有要求而接口没有，接口在用到其父类时再进行初始化）</p>
+<li><p>当初始化一个类的时候其父类还没有进行初始化则对其父类先进行初始化（类对此有要求而接口没有，接口在用到其父类时再进行初始化）–<em>子类初始化会连动父类初始化</em></p>
 </li>
-<li><p>虚拟机启动时，用户指定要执行的类（包含main方法的类），则对其进行初始化</p>
+<li><p>main方法所在的类首先进行初始化</p>
 </li>
 <li><p>jdk1.7的动态语言支持，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个方法句柄对应的类没有进行初始化，则需要先初始化</p>
 </li>
@@ -191,12 +191,18 @@
 <li>引用静态字段的时候只有定义静态字段的类会初始化，其子类在引用的时候子类不会初始化，只会初始化定义静态字段的父类</li>
 <li>SuperClass[] sca=new SuperClass[]; 不会触发SuperClass的初始化（创建动作是newarray，不是new）</li>
 <li>在一个类种有final修饰的静态属性，当对此属性引用时不会触发该类的初始化，因为在编译期间将此静态属性的值存储到了Notinitialization类的常量池中，此时引用的是Notinitialization的值，与定义此静态属性的类已经没有任何联系了</li>
+<li>对象.class</li>
+<li>类加载器的loadClass方法</li>
+<li>Class.forName()的第2个参数是false时</li>
 </ul>
 </li>
 </ol>
 <ul>
 <li><h3 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a><strong>类加载的过程</strong></h3><ul>
-<li><strong>加载</strong><ol>
+<li><p><strong>加载</strong></p>
+<p><img src="C:%5CUsers%5C32908%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191227135924072.png" alt="image-20191227135924072"></p>
+<ol>
+<li>instanceKlass这样的元数据是存储在方法去内的，_java_mirror存储在Heap中，并且互相持有对方的指针</li>
 <li>加载只是类加载的一个阶段</li>
 <li>加载阶段，虚拟机需要完成三件事情：获取二进制字节流–&gt;根据二进制字节流构造数据结构–&gt;方法区中生成一个java.lang.Class对象<ul>
 <li>通过一个类的全限定名获取定义此类的二进制字节流</li>
@@ -207,24 +213,39 @@
 <li>加载阶段和验证的部分阶段是交叉进行的</li>
 </ol>
 </li>
-<li><strong>验证</strong><ol>
+<li><p><strong>验证–链接</strong></p>
+<ol>
+<li>验证类是否复合java虚拟机规范，安全性检查</li>
 <li>文件格式验证：魔数、主次版本校验</li>
 <li>元数据验证</li>
 <li>字节码验证</li>
 <li>符号引用验证</li>
 </ol>
 </li>
-<li><strong>准备</strong><ol>
-<li>此阶段为类变量（static）分配内存（在方法区中）并赋初始值，真正赋值则是在<cinit>()方法中</li>
-<li>final修饰的static变量则在准备阶段就进行了真正赋值</li>
+<li><p><strong>准备–链接</strong></p>
+<ol>
+<li>此阶段为类变量（static）分配内存（1.6之前在方法区中，1.7之后在Heap中），赋初始值（真正赋值则是在<cinit>()方法中）</li>
+<li>final修饰的static变量则在准备阶段就进行了真正赋值（基本数据类型+String），除此之外则在初始化的时候赋值</li>
 </ol>
 </li>
-<li><strong>解析</strong><ol>
-<li>将常量池中符号引用替换为直接引用的过程</li>
-<li></li>
+<li><p><strong>解析–链接</strong></p>
+<ul>
+<li>将常量池中符号引用替换为直接引用的<ul>
+<li><img src="C:\Users\32908\AppData\Roaming\Typora\typora-user-images\image-20191227142650314.png" alt="image-20191227142650314" style="zoom:67%;" /></li>
+<li><img src="C:\Users\32908\AppData\Roaming\Typora\typora-user-images\image-20191227142719480.png" alt="image-20191227142719480" style="zoom: 67%;" />
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>初始化</strong></p>
+<ol>
+<li>初始化即调用<cinit>()V，虚拟机保证这个类的构造方法线程安全</li>
 </ol>
 </li>
 </ul>
+</li>
+<li><h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a><strong>类加载器</strong></h3><p><img src="C:%5CUsers%5C32908%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191227151459292.png" alt="image-20191227151459292"></p>
 </li>
 </ul>
 <p>​    </p>
@@ -286,6 +307,13 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/30/设计模式/单例模式/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">单例模式</span>
+            </a>
+        </div>
+        
         
         <div class="level-end">
             <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/27/java虚拟机/类文件结构/">
@@ -339,7 +367,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            3
+                            8
                         </p>
                     </a>
                 </div>
@@ -351,7 +379,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            3
+                            7
                         </p>
                     </a>
                 </div>
@@ -363,7 +391,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            2
+                            5
                         </p>
                     </a>
                 </div>
@@ -400,6 +428,10 @@
         <a class="is-flex" href="#类加载的过程">
         <span class="has-mr-6">3</span>
         <span>类加载的过程</span>
+        </a></li><li>
+        <a class="is-flex" href="#类加载器">
+        <span class="has-mr-6">4</span>
+        <span>类加载器</span>
         </a></li></ul>
             </div>
         </div>
@@ -474,6 +506,38 @@
             <span class="level-end">
                 <span class="level-item tag">2</span>
             </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/算法/">
+            <span class="level-start">
+                <span class="level-item">算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/算法/数组/">
+            <span class="level-start">
+                <span class="level-item">数组</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/设计模式/">
+            <span class="level-start">
+                <span class="level-item">设计模式</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/设计模式/单例模式/">
+            <span class="level-start">
+                <span class="level-item">单例模式</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
         </a></li></ul></li>
             </ul>
         </div>
@@ -485,7 +549,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/虚拟机/" style="font-size: 10px;">虚拟机</a>
+        <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/数组/" style="font-size: 20px;">数组</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/虚拟机/" style="font-size: 13.33px;">虚拟机</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
     </div>
 </div>
     
@@ -500,18 +564,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/27/java虚拟机/虚拟机类加载机制/" class="media-left">
+            <a href="/2020/01/05/算法/数组/x 的平方根/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="虚拟机加载机制">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="x的平方根">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T16:20:30.734Z">2019-12-27</time></div>
-                    <a href="/2019/12/27/java虚拟机/虚拟机类加载机制/" class="title has-link-black-ter is-size-6 has-text-weight-normal">虚拟机加载机制</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T16:30:52.384Z">2020-01-05</time></div>
+                    <a href="/2020/01/05/算法/数组/x 的平方根/" class="title has-link-black-ter is-size-6 has-text-weight-normal">x的平方根</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
                     </p>
                 </div>
             </div>
@@ -519,18 +583,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/27/java虚拟机/类文件结构/" class="media-left">
+            <a href="/2020/01/04/算法/数组/二进制求和/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="类文件结构">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="二进制求和">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T16:20:30.732Z">2019-12-27</time></div>
-                    <a href="/2019/12/27/java虚拟机/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类文件结构</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T15:53:54.963Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/算法/数组/二进制求和/" class="title has-link-black-ter is-size-6 has-text-weight-normal">二进制求和</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
                     </p>
                 </div>
             </div>
@@ -538,18 +602,56 @@
         
         <article class="media">
             
-            <a href="/2019/12/26/杂谈/杂/" class="media-left">
+            <a href="/2020/01/04/算法/数组/最后一个单词的长度/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="杂">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="最后一个单词的长度">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T13:59:52.618Z">2019-12-26</time></div>
-                    <a href="/2019/12/26/杂谈/杂/" class="title has-link-black-ter is-size-6 has-text-weight-normal">杂</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T14:21:36.880Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/算法/数组/最后一个单词的长度/" class="title has-link-black-ter is-size-6 has-text-weight-normal">最后一个单词的长度</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/杂谈/">杂谈</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/04/算法/数组/合并两个有序数组/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="合并两个有序数组">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T13:04:50.635Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/算法/数组/合并两个有序数组/" class="title has-link-black-ter is-size-6 has-text-weight-normal">合并两个有序数组</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/30/设计模式/单例模式/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="单例模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-30T07:36:42.600Z">2019-12-30</time></div>
+                    <a href="/2019/12/30/设计模式/单例模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单例模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a> / <a class="has-link-grey -link" href="/categories/设计模式/单例模式/">单例模式</a>
                     </p>
                 </div>
             </div>
@@ -567,12 +669,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/12/">
                 <span class="level-start">
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -598,9 +711,30 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/数组/">
+                        <span class="tag">数组</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/虚拟机/">
                         <span class="tag">虚拟机</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/设计模式/">
+                        <span class="tag">设计模式</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -628,18 +762,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/27/java虚拟机/虚拟机类加载机制/" class="media-left">
+            <a href="/2020/01/05/算法/数组/x 的平方根/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="虚拟机加载机制">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="x的平方根">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T16:20:30.734Z">2019-12-27</time></div>
-                    <a href="/2019/12/27/java虚拟机/虚拟机类加载机制/" class="title has-link-black-ter is-size-6 has-text-weight-normal">虚拟机加载机制</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T16:30:52.384Z">2020-01-05</time></div>
+                    <a href="/2020/01/05/算法/数组/x 的平方根/" class="title has-link-black-ter is-size-6 has-text-weight-normal">x的平方根</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
                     </p>
                 </div>
             </div>
@@ -647,18 +781,18 @@
         
         <article class="media">
             
-            <a href="/2019/12/27/java虚拟机/类文件结构/" class="media-left">
+            <a href="/2020/01/04/算法/数组/二进制求和/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="类文件结构">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="二进制求和">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T16:20:30.732Z">2019-12-27</time></div>
-                    <a href="/2019/12/27/java虚拟机/类文件结构/" class="title has-link-black-ter is-size-6 has-text-weight-normal">类文件结构</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T15:53:54.963Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/算法/数组/二进制求和/" class="title has-link-black-ter is-size-6 has-text-weight-normal">二进制求和</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
                     </p>
                 </div>
             </div>
@@ -666,18 +800,56 @@
         
         <article class="media">
             
-            <a href="/2019/12/26/杂谈/杂/" class="media-left">
+            <a href="/2020/01/04/算法/数组/最后一个单词的长度/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="杂">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="最后一个单词的长度">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T13:59:52.618Z">2019-12-26</time></div>
-                    <a href="/2019/12/26/杂谈/杂/" class="title has-link-black-ter is-size-6 has-text-weight-normal">杂</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T14:21:36.880Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/算法/数组/最后一个单词的长度/" class="title has-link-black-ter is-size-6 has-text-weight-normal">最后一个单词的长度</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/杂谈/">杂谈</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/04/算法/数组/合并两个有序数组/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="合并两个有序数组">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T13:04:50.635Z">2020-01-04</time></div>
+                    <a href="/2020/01/04/算法/数组/合并两个有序数组/" class="title has-link-black-ter is-size-6 has-text-weight-normal">合并两个有序数组</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/30/设计模式/单例模式/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="单例模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-30T07:36:42.600Z">2019-12-30</time></div>
+                    <a href="/2019/12/30/设计模式/单例模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">单例模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/设计模式/">设计模式</a> / <a class="has-link-grey -link" href="/categories/设计模式/单例模式/">单例模式</a>
                     </p>
                 </div>
             </div>
@@ -695,12 +867,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/12/">
                 <span class="level-start">
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -726,9 +909,30 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/数组/">
+                        <span class="tag">数组</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/虚拟机/">
                         <span class="tag">虚拟机</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/设计模式/">
+                        <span class="tag">设计模式</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -753,7 +957,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 Wang Tao&nbsp;
+                &copy; 2020 Wang Tao&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
                 
