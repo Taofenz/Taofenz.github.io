@@ -19,7 +19,7 @@
 <meta property="og:description" content="题目 颠倒给定的 32 位无符号整数的二进制位。 示例 1： 1234输入: 00000010100101000001111010011100输出: 00111001011110000010100101000000解释: 输入的二进制串 00000010100101000001111010011100 表示无符号整数 43261596，      因此返回 964176192，其二进制表示形式为">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-01-07T07:41:22.554Z">
+<meta property="og:updated_time" content="2020-01-07T12:29:41.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="颠倒二进制位">
 <meta name="twitter:description" content="题目 颠倒给定的 32 位无符号整数的二进制位。 示例 1： 1234输入: 00000010100101000001111010011100输出: 00111001011110000010100101000000解释: 输入的二进制串 00000010100101000001111010011100 表示无符号整数 43261596，      因此返回 964176192，其二进制表示形式为">
@@ -148,7 +148,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 416 个字)
+                    3 分钟 读完 (大约 470 个字)
                 </span>
                 
                 
@@ -179,11 +179,22 @@
 <p><strong>进阶:</strong><br>如果多次调用这个函数，你将如何优化你的算法？</p>
 <p><strong>思路：</strong></p>
 <ul>
-<li>先将整数转换为二进制，然后倒序补0，输出的时候判断符号位，再将剩下的31位转换为10进制乘以对应的符号输出</li>
-<li>位运算</li>
+<li><p>先将整数转换为二进制，然后倒序补0，输出的时候判断符号位，再将剩下的31位转换为10进制乘以对应的符号输出</p>
+</li>
+<li><p>位运算</p>
+</li>
+<li><p>位运算倒序万能模板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int n //要倒序的数字</span><br><span class="line">int ans = 0;</span><br><span class="line">&#123;</span><br><span class="line">	ans = ans * 进制 + n % 进制;</span><br><span class="line">	n /= 进制;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
 <p><strong>实现：</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverseBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        String s = Integer.toBinaryString(n);</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(s);</span><br><span class="line">        sb.reverse();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//补0</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = s.length(); i &lt; <span class="number">32</span>; i++) &#123;</span><br><span class="line">            sb.append(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//存放结果</span></span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        s= sb.toString();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//获取符号位</span></span><br><span class="line">        String bit = s.substring(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//获取数字位</span></span><br><span class="line">        String temp = s.substring(<span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//判断符号位</span></span><br><span class="line">        <span class="keyword">if</span> (bit.equals(<span class="string">"0"</span>))</span><br><span class="line">            res = Integer.parseInt(temp, <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            res = -<span class="number">1</span> * (Integer.MAX_VALUE - Integer.parseInt(temp, <span class="number">2</span>) + <span class="number">1</span>); </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>位运算</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverseBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">32</span>;</span><br><span class="line">        <span class="keyword">while</span> (count-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            res = res &lt;&lt; <span class="number">1</span>;</span><br><span class="line">            res += (n &amp; <span class="number">1</span>);</span><br><span class="line">            n = n &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
         </div>
@@ -243,6 +254,13 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/07/杂谈/位运算/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">位运算</span>
+            </a>
+        </div>
+        
         
         <div class="level-end">
             <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/07/算法/数组/旋转数组/">
@@ -296,7 +314,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            21
+                            22
                         </p>
                     </a>
                 </div>
@@ -308,7 +326,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -320,7 +338,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            6
                         </p>
                     </a>
                 </div>
@@ -390,9 +408,17 @@
                 <span class="level-item">java</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
+        <a class="level is-marginless" href="/categories/java/基础/">
+            <span class="level-start">
+                <span class="level-item">基础</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/java/杂谈/">
             <span class="level-start">
                 <span class="level-item">杂谈</span>
@@ -451,7 +477,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/数组/" style="font-size: 20px;">数组</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/虚拟机/" style="font-size: 13.33px;">虚拟机</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+        <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/位运算/" style="font-size: 10px;">位运算</a> <a href="/tags/数组/" style="font-size: 20px;">数组</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/虚拟机/" style="font-size: 13.33px;">虚拟机</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
     </div>
 </div>
     
@@ -463,6 +489,25 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/07/杂谈/位运算/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="位运算">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T07:53:21.074Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/杂谈/位运算/" class="title has-link-black-ter is-size-6 has-text-weight-normal">位运算</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/基础/">基础</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -540,25 +585,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/01/07/算法/数组/多数元素/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="多数元素">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T01:58:15.223Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/算法/数组/多数元素/" class="title has-link-black-ter is-size-6 has-text-weight-normal">多数元素</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -576,7 +602,7 @@
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">17</span>
+                    <span class="level-item tag">18</span>
                 </span>
             </a>
         </li>
@@ -608,7 +634,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/java/">
                         <span class="tag">java</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/位运算/">
+                        <span class="tag">位运算</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -664,6 +697,25 @@
         
         <article class="media">
             
+            <a href="/2020/01/07/杂谈/位运算/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="位运算">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T07:53:21.074Z">2020-01-07</time></div>
+                    <a href="/2020/01/07/杂谈/位运算/" class="title has-link-black-ter is-size-6 has-text-weight-normal">位运算</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/java/">java</a> / <a class="has-link-grey -link" href="/categories/java/基础/">基础</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/01/07/算法/数组/颠倒二进制位/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="颠倒二进制位">
@@ -738,25 +790,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/01/07/算法/数组/多数元素/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="多数元素">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-07T01:58:15.223Z">2020-01-07</time></div>
-                    <a href="/2020/01/07/算法/数组/多数元素/" class="title has-link-black-ter is-size-6 has-text-weight-normal">多数元素</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/算法/">算法</a> / <a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -774,7 +807,7 @@
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">17</span>
+                    <span class="level-item tag">18</span>
                 </span>
             </a>
         </li>
@@ -806,7 +839,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/java/">
                         <span class="tag">java</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/位运算/">
+                        <span class="tag">位运算</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
