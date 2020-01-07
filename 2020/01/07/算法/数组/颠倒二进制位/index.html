@@ -7,22 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>类文件结构 - Code Wang的博客</title>
+<title>颠倒二进制位 - Code Wang的博客</title>
 
 
-    <meta name="description" content="class类文件结构 知识点 class文件是一组以8位字节为基础的二进制流 class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：无符号数和表 无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值 表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性的以">
-<meta name="keywords" content="java,虚拟机">
+    <meta name="description" content="题目 颠倒给定的 32 位无符号整数的二进制位。 示例 1： 1234输入: 00000010100101000001111010011100输出: 00111001011110000010100101000000解释: 输入的二进制串 00000010100101000001111010011100 表示无符号整数 43261596，      因此返回 964176192，其二进制表示形式为">
+<meta name="keywords" content="算法,数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="类文件结构">
-<meta property="og:url" content="http://yoursite.com/2019/12/27/java虚拟机/类文件结构/index.html">
+<meta property="og:title" content="颠倒二进制位">
+<meta property="og:url" content="http://yoursite.com/2020/01/07/算法/数组/颠倒二进制位/index.html">
 <meta property="og:site_name" content="Code Wang的博客">
-<meta property="og:description" content="class类文件结构 知识点 class文件是一组以8位字节为基础的二进制流 class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：无符号数和表 无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值 表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性的以">
+<meta property="og:description" content="题目 颠倒给定的 32 位无符号整数的二进制位。 示例 1： 1234输入: 00000010100101000001111010011100输出: 00111001011110000010100101000000解释: 输入的二进制串 00000010100101000001111010011100 表示无符号整数 43261596，      因此返回 964176192，其二进制表示形式为">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-26T16:11:24.086Z">
+<meta property="og:updated_time" content="2020-01-07T07:41:22.554Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="类文件结构">
-<meta name="twitter:description" content="class类文件结构 知识点 class文件是一组以8位字节为基础的二进制流 class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：无符号数和表 无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值 表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性的以">
+<meta name="twitter:title" content="颠倒二进制位">
+<meta name="twitter:description" content="题目 颠倒给定的 32 位无符号整数的二进制位。 示例 1： 1234输入: 00000010100101000001111010011100输出: 00111001011110000010100101000000解释: 输入的二进制串 00000010100101000001111010011100 表示无符号整数 43261596，      因此返回 964176192，其二进制表示形式为">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -81,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="类文件结构" height="28">
+                <img src="/images/logo.svg" alt="颠倒二进制位" height="28">
             
             </a>
         </div>
@@ -138,17 +138,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-26T16:20:30.732Z">2019-12-27</time>
+                <time class="level-item has-text-grey" datetime="2020-01-07T05:44:23.019Z">2020-01-07</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/java/">java</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/java/虚拟机/">虚拟机</a>
+                <a class="has-link-grey -link" href="/categories/算法/">算法</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/算法/数组/">数组</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1319 个字)
+                    3 分钟 读完 (大约 416 个字)
                 </span>
                 
                 
@@ -157,161 +157,34 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                类文件结构
+                颠倒二进制位
             
         </h1>
         <div class="content">
-            <ul>
-<li><h3 id="class类文件结构"><a href="#class类文件结构" class="headerlink" title="class类文件结构"></a><strong>class类文件结构</strong></h3><ul>
-<li><strong>知识点</strong><ol>
-<li>class文件是一组以8位字节为基础的二进制流</li>
-<li>class文件格式采用一种类似于c语言结构体的伪结构来存储数据，只包含两种类型：<strong>无符号数和表</strong><ul>
-<li>无符号数:属于基本的数据类型，u1，u2到u8分别代表1，2，8个字节的无符号数，可以用来描述数字、索引引用、数量值或者utf-8编码构成的字符串值</li>
-<li>表：由多个无符号数或者其他表作为数据项构成的复合数据类型，所有表都习惯性的以“_info”结尾</li>
-</ul>
-</li>
-<li>整个class文件本质上就是一张表</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
+            <p><strong>题目</strong></p>
+<p>颠倒给定的 32 位无符号整数的二进制位。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: 00000010100101000001111010011100</span><br><span class="line">输出: 00111001011110000010100101000000</span><br><span class="line">解释: 输入的二进制串 00000010100101000001111010011100 表示无符号整数 43261596，</span><br><span class="line">      因此返回 964176192，其二进制表示形式为 00111001011110000010100101000000。</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 
+<p>示例 2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：11111111111111111111111111111101</span><br><span class="line">输出：10111111111111111111111111111111</span><br><span class="line">解释：输入的二进制串 11111111111111111111111111111101 表示无符号整数 4294967293，</span><br><span class="line">      因此返回 3221225471 其二进制表示形式为 10101111110010110010011101101001。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
 <ul>
-<li><p><strong>字节码</strong></p>
-</li>
-<li><p><strong>魔数与class文件的版本</strong></p>
-<ol>
-<li>每个class文件开头4个字节成为魔数，唯一的<strong>作用</strong>进行身份识别（比文件扩展名更加安全，因为扩展名可以随意修改）</li>
-<li>第5、6个字节表示次版本号</li>
-<li>第7、8个字节表示主版本号（<strong>JAVA主版本号从45开始</strong>）</li>
-</ol>
-</li>
+<li>请注意，在某些语言（如 Java）中，没有无符号整数类型。在这种情况下，输入和输出都将被指定为有符号整数类型，并且不应影响您的实现，因为无论整数是有符号的还是无符号的，其内部的二进制表示形式都是相同的。</li>
+<li>在 Java 中，编译器使用二进制补码记法来表示有符号整数。因此，在上面的 示例 2 中，输入表示有符号整数 -3，输出表示有符号整数 -1073741825。</li>
 </ul>
-<ol start="4">
-<li>java的魔数是“0xCAFEBABE”</li>
-</ol>
+<p><strong>进阶:</strong><br>如果多次调用这个函数，你将如何优化你的算法？</p>
+<p><strong>思路：</strong></p>
 <ul>
-<li><p><strong>常量池</strong></p>
-<ol>
-<li><p>主次版本后就是常量池的入口，入口放置u2，表示常量池容量，从1开始</p>
-</li>
-<li><p>主要存放两大类常量：<strong>字面量和符号引用</strong></p>
-<p><strong>字面量：</strong>接近java语言层面的常量概念，如：文本字符串、声明为final的常量值</p>
-<p><strong>符号引用：</strong>属于编译原理方面的概念，如：类和接口的全限定名、字段的名称和描述符、方法的名称和描述                          符</p>
-</li>
-</ol>
-</li>
+<li>先将整数转换为二进制，然后倒序补0，输出的时候判断符号位，再将剩下的31位转换为10进制乘以对应的符号输出</li>
+<li>位运算</li>
 </ul>
-<ul>
-<li><p><strong>访问标志</strong></p>
-<ol>
-<li>常量池结束后紧接的两个字节</li>
-<li>这个标志用于识别一些类或者接口层次的访问信息，如：这个class是类还是接口、是否定义为public、是否定义为abstract类型、是否被声明为final</li>
-</ol>
-</li>
-<li><p><strong>类索引、父类索引、接口索引</strong></p>
-<ol>
-<li>访问标志后的三个u2类型的数据分别表示类索引、父类索引、接口索引数量</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li><p><strong>字段表集合</strong></p>
-</li>
-<li><p><strong>方法表集合</strong></p>
-</li>
-<li><p><strong>属性表集合</strong></p>
-</li>
-<li><p><strong>字节码指令</strong></p>
-<ul>
-<li><p><strong>知识点</strong></p>
-<ol>
-<li>java虚拟机指令：操作码（opcode）+操作数（oprands）</li>
-<li>操作码大小为1个字节，所以操作码指令总数不可能超过256</li>
-</ol>
-</li>
-<li><p><strong>加载和存储指令</strong></p>
-<ol>
-<li>加载（变量：load 常量:ipush）和存储（store）指令用于将数据在栈帧的局部变量表和操作数栈之间传输数据</li>
-<li>slot_0 存放的四this</li>
-</ol>
-</li>
-<li><p><strong>指令运算集</strong></p>
-<ol>
-<li>如果某个操作结果没有明确的数学定义，则使用NaN表示，NaN参与的所有运算结果都是NaN</li>
-</ol>
-</li>
-<li><p><strong>类型转换指令</strong></p>
-<ol>
-<li><p>Java虚拟机支持的直接转换（无需显示转换）：小范围类型到大范围类型的安全转换</p>
-<ul>
-<li>int到long、float、double</li>
-<li>long到float、double</li>
-<li>float到double</li>
-</ul>
-</li>
-<li><p>窄化类型转换（大范围类型到小范围类型的不安全转换）例如：i2b、l2i   转换结果可能产生不同的正负号、不同的数量级、导致精度丢失</p>
-<ul>
-<li>long转int：丢弃高位，剩下32位，最高位则位正负号，则有可能出现与原来相反的符号</li>
-<li>浮点数转整型：<ol>
-<li>浮点数是NaN，转换结果是0</li>
-<li>浮点值不是无穷大的话，舍弃小数位的结果在整型范围内则直接舍弃小数位</li>
-<li>浮点值不是无穷大的话，舍弃小数位的结果不在整型范围内，则根据浮点数的符号，表示位整型的最大或最小正数</li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p><strong>对象创建与访问指令</strong></p>
-<ul>
-<li>创建类实例：new</li>
-<li>创建数组：newarray、anewarray</li>
-<li>访问类字段（static）：getstatic、putstatic</li>
-<li>访问实例字段：getfield、putfield</li>
-<li>将数组元素加载到操作数栈：_aload</li>
-<li>将操作数栈中的元素存到数组中：_astore</li>
-<li>取数组长度指令：arraylength</li>
-<li>检查类实例类型：instanceof、checkcast</li>
-</ul>
-</li>
-<li><p><strong>操作数栈管理指令</strong></p>
-<ol>
-<li>栈顶出栈元素：pop、pop2（出栈两个元素）</li>
-<li>复制栈顶的值并重新压入栈中：dup、dup2（复制栈顶两个元素）</li>
-<li>互换栈顶两个元素：swap</li>
-</ol>
-</li>
-<li><p><strong>控制转移指令</strong></p>
-<ol>
-<li>条件分支：ifeq、iflt、ifnull</li>
-<li>复合条件分支：tableswitch、lookupswitch</li>
-<li>无条件分支：goto、goto_w、ret</li>
-</ol>
-</li>
-<li><p><strong>方法调用和返回指令</strong></p>
-<ol>
-<li>invokevirtual 调用对象实例方法</li>
-<li>invokeinterface 调用接口方法（找到实现此接口的方法进行调用）</li>
-<li>invokespecial 调用需要特殊处理的方法，例如：实例初始化方法、私有方法和父方法</li>
-<li>invokestatic 调用类方法</li>
-<li>invokedynamic </li>
-<li>ireturn（bool、byte、char、short、int）返回值类型</li>
-<li>lreturn、freturn、dreturn、areturn</li>
-</ol>
-</li>
-<li><p><strong>异常处理指令</strong></p>
-</li>
-<li><p><strong>同步指令</strong></p>
-<ol>
-<li>java虚拟机可以支持方法级同步和方法内部一段指令的同步，这两种同步都使用管程（Monitor）来支持</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
+<p><strong>实现：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverseBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        String s = Integer.toBinaryString(n);</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(s);</span><br><span class="line">        sb.reverse();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//补0</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = s.length(); i &lt; <span class="number">32</span>; i++) &#123;</span><br><span class="line">            sb.append(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//存放结果</span></span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        s= sb.toString();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//获取符号位</span></span><br><span class="line">        String bit = s.substring(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//获取数字位</span></span><br><span class="line">        String temp = s.substring(<span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//判断符号位</span></span><br><span class="line">        <span class="keyword">if</span> (bit.equals(<span class="string">"0"</span>))</span><br><span class="line">            res = Integer.parseInt(temp, <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            res = -<span class="number">1</span> * (Integer.MAX_VALUE - Integer.parseInt(temp, <span class="number">2</span>) + <span class="number">1</span>); </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -319,7 +192,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/java/">java</a>, <a class="has-link-grey -link" href="/tags/虚拟机/">虚拟机</a>
+                    <a class="has-link-grey -link" href="/tags/数组/">数组</a>, <a class="has-link-grey -link" href="/tags/算法/">算法</a>
                 </div>
             </div>
         </div>
@@ -370,17 +243,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/27/java虚拟机/虚拟机类加载机制/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">虚拟机加载机制</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/26/杂谈/杂/">
-                <span class="level-item">杂</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/07/算法/数组/旋转数组/">
+                <span class="level-item">旋转数组</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -472,21 +338,6 @@
 </div>
     
         
-
-    <div class="card widget" id="toc">
-        <div class="card-content">
-            <div class="menu">
-                <h3 class="menu-label">
-                    目录
-                </h3>
-                <ul class="menu-list"><li>
-        <a class="is-flex" href="#class类文件结构">
-        <span class="has-mr-6">1</span>
-        <span>class类文件结构</span>
-        </a></li></ul>
-            </div>
-        </div>
-    </div>
 
     
         <div class="card widget">
@@ -1004,7 +855,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="类文件结构" height="28">
+                    <img src="/images/logo.svg" alt="颠倒二进制位" height="28">
                 
                 </a>
                 <p class="is-size-7">
